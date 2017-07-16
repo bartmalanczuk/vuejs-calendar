@@ -1,7 +1,12 @@
 <template>
-  <div id="calendar">
-    <div class="calendar-week" v-for="week in weeks">
-      <calendar-day v-for="day in week" :day="day">{{ day }}</calendar-day>
+  <div>
+    <div id="day-bar">
+      <div v-for="day in weekDays">{{ day }}</div>
+    </div>
+    <div id="calendar">
+      <div class="calendar-week" v-for="week in weeks">
+        <calendar-day v-for="day in week" :day="day">{{ day }}</calendar-day>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +33,9 @@
             this.$moment(week).endOf('isoweek'),
           ).by('day'));
         });
+      },
+      weekDays() {
+        return this.weeks[0].map(day => day.format('ddd'));
       },
     },
     components: {
