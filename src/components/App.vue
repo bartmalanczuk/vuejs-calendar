@@ -14,13 +14,9 @@
   import CalendarDay from './CalendarDay.vue';
 
   export default {
-    data() {
-      return {
-        month: 7,
-        year: 2017,
-      };
-    },
     computed: {
+      month() { return this.$store.state.currentMonth },
+      year() { return this.$store.state.currentYear },
       weeks() {
         const day = this.$moment(`${this.year}-${this.month}-1`, 'YYYY-M-D');
 
