@@ -1,5 +1,5 @@
 <template>
-  <div class="day">{{ formatDay(day) }}</div>
+  <div :class="classDescriptor">{{ formatDay(day) }}</div>
 </template>
 <script>
   export default {
@@ -7,6 +7,14 @@
     methods: {
       formatDay(raw) {
         return raw.format('D');
+      },
+    },
+    computed: {
+      classDescriptor() {
+        return {
+          day: true,
+          today: this.day.isSame(this.$moment(), 'day'),
+        };
       },
     },
   };

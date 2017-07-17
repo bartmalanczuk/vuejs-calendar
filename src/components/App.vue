@@ -16,7 +16,7 @@
   export default {
     data() {
       return {
-        month: 2,
+        month: 7,
         year: 2017,
       };
     },
