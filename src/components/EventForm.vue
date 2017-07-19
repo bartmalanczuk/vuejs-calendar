@@ -1,5 +1,5 @@
 <template>
-  <div id="event-form" :class="{ active: true }" :style="{ top: '500px', left: '500px' }">
+  <div id="event-form" :class="{ active: true }" :style='{ top: `${position.y}px`, left:  `${position.x}px` }'>
     <h4>Add an event</h4>
     <p>Thursday, Feb 9th</p>
     <div class="text">
@@ -9,5 +9,10 @@
 </template>
 <script>
   export default {
+    computed: {
+      position() {
+        return this.$store.state.eventFormPosition;
+      },
+    },
   };
 </script>

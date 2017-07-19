@@ -1,5 +1,5 @@
 <template>
-  <div :class="classDescriptor">{{ formatDay(day) }}</div>
+  <div :class="classDescriptor" @click="captureClick">{{ formatDay(day) }}</div>
 </template>
 <script>
   export default {
@@ -7,6 +7,9 @@
     methods: {
       formatDay(raw) {
         return raw.format('D');
+      },
+      captureClick(event) {
+        this.$store.commit('openEventForm', {x: event.x, y: event.y});
       },
     },
     computed: {
