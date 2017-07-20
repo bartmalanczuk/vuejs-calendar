@@ -4,7 +4,7 @@
     <div id="close-button" @click="close">&#10005</div>
     <p>{{ formatDate(day) }}</p>
     <div class="text">
-      <input type="text" placeholder="Dinner at Pancho's" v-model="description">
+      <input type="text" placeholder="Dinner at Pancho's" v-model="description" @keyup.enter="addEvent">
     </div>
     <div class="buttons">
       <button @click="addEvent">Create</button>
