@@ -34,11 +34,13 @@
         this.$store.commit('closeEventForm');
       },
       addEvent() {
-        this.$store.commit(
-          'addEvent',
-          {description: this.description, date: this.$store.state.selectedDay},
-        );
-        this.description = '';
+        if (this.description.length > 0) {
+          this.$store.commit(
+            'addEvent',
+            {description: this.description, date: this.$store.state.selectedDay},
+          );
+          this.description = '';
+        }
       },
       formatDate(raw) {
         return this.$moment(raw).format('dddd, MMM Do');
