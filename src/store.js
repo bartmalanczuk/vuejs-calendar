@@ -17,6 +17,8 @@ export default new Vuex.Store({
     updateCurrentMontAndYear(state, date) {
       state.currentMonth = date.get('month') + 1;
       state.currentYear = date.get('year');
+      state.isEventFormActive = false;
+      state.selectedDay = undefined;
     },
     openEventForm(state, { position, day }) {
       state.isEventFormActive = true;
