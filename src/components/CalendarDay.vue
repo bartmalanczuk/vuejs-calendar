@@ -29,6 +29,7 @@
           day: true,
           today: this.day.isSame(this.$moment(), 'day'),
           past: this.day.isBefore(this.$moment(), 'day'),
+          active: this.$store.state.selectedDay && this.day.isSame(this.$store.state.selectedDay, 'day'),
         };
       },
     },
