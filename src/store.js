@@ -5,11 +5,15 @@ import moment from 'moment';
 
 Vue.use(Vuex);
 
+const events = __INITIAL_STATE__.events.map((event) => {
+  return Object.assign({}, event, { date: moment(event.date) });
+});
+
 export default new Vuex.Store({
   state: {
     currentMonth: 7,
     currentYear: 2017,
-    events: [],
+    events,
     eventFormPosition: {x: 0, y: 0},
     isEventFormActive: false,
     selectedDay: undefined,

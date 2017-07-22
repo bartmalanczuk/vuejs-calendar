@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const http = require('http');
+const serialize = require('serialize-javascript');
 
 app.use(require('body-parser').json());
 
@@ -13,8 +14,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 const events = [];
 
 app.get('/', (req, res) => {
-  let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
-  res.send(template);
+  const template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
+  const contentMarker = '<!--App-->';
+  res.send(template.replace(contentMarker, `<script>__INITIAL_STATE__ = { events: ${ serialize(events) } }</script>`));
 
 });
 
