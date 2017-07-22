@@ -6,12 +6,21 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 
+app.use(require('body-parser').json());
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
+const events = [];
 
 app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
   res.send(template);
 
+});
+
+app.post('/event', (req, res) => {
+  events.push(req.body);
+  res.sendStatus(200);
 });
 
 const server = http.createServer(app);

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Axios from 'axios';
 import moment from 'moment';
 
 Vue.use(Vuex);
@@ -32,6 +33,14 @@ export default new Vuex.Store({
     addEvent(state, event) {
       state.events.push(event);
       state.isEventFormActive = false;
+      state.selectedDay = undefined;
+    },
+  },
+  actions: {
+    addEvent(context, event) {
+      return Axios.post('/event', event).then(() => {
+        context.commit('addEvent', event);
+      });
     },
   },
 });

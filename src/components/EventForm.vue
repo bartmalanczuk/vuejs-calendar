@@ -37,11 +37,14 @@
       },
       addEvent() {
         if (this.description.length > 0) {
-          this.$store.commit(
-            'addEvent',
-            {description: this.description, date: this.$store.state.selectedDay},
-          );
-          this.description = '';
+          const event = {
+            description: this.description,
+            date: this.$store.state.selectedDay,
+          };
+
+          this.$store.dispatch('addEvent', event).then(() => {
+            this.description = '';
+          });
         }
       },
       formatDate(raw) {
